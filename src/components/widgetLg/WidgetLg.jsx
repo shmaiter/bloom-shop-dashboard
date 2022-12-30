@@ -1,5 +1,6 @@
 import "./widgetLg.css";
 import { useState, useEffect } from "react";
+import { format } from "timeago.js";
 import { userRequest } from "../../requestedMethods";
 
 export default function WidgetLg() {
@@ -39,7 +40,7 @@ export default function WidgetLg() {
                                 <img src="https://images.pexels.com/photos/4172933/pexels-photo-4172933.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" className="widgetLgImg" />
                                 <span className="widgetLgName">{order.userId}</span>
                             </td>
-                            <td className="widgetLgDate">{order.createdAt}</td>
+                            <td className="widgetLgDate">{format(order.createdAt)}</td>
                             <td className="widgetLgAmount">$ {order.amount}</td>
                             <td className="widgetLgStatus">
                                 <Button type={order.status} />
