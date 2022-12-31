@@ -13,6 +13,7 @@ export default function FeaturedInfo() {
                 const res = await userRequest.get("orders/income/month");
                 // console.log(res.data);
                 setIncome(res.data);
+                // BUG: checkout for the latest revenue, isn't given the right one.
                 setPerc((res.data[1].total * 100) / res.data[0].total - 100);
             } catch (err) {
                 console.log(err);
@@ -21,8 +22,8 @@ export default function FeaturedInfo() {
         getIncome();
     }, []);
 
-    // console.log(income);
-    // console.log(perc);
+    console.log(income);
+    console.log(perc);
 
     return (
         <div className="featured">
