@@ -11,10 +11,10 @@ export default function FeaturedInfo() {
         const getIncome = async () => {
             try {
                 const res = await userRequest.get("orders/income/month");
-                // console.log(res.data);
+                console.log(res.data);
                 setIncome(res.data);
                 // BUG: checkout for the latest revenue, isn't given the right one.
-                setPerc((res.data[1].total * 100) / res.data[0].total - 100);
+                setPerc((res.data[1]?.total * 100) / res.data[0]?.total - 100);
             } catch (err) {
                 console.log(err);
             }
@@ -22,15 +22,15 @@ export default function FeaturedInfo() {
         getIncome();
     }, []);
 
-    console.log(income);
-    console.log(perc);
+    // console.log(income);
+    // console.log(perc);
 
     return (
         <div className="featured">
             <div className="featuredItem">
                 <span className="featuredTitle">Revanue</span>
                 <div className="featuredMoneyContainer">
-                    <span className="featuredMoney">${income[1]?.total}</span>
+                    <span className="featuredMoney">${income[1]?.total || 0}</span>
                     <span className="featuredMoneyRate">
                         % {Math.floor(perc)}
                         {perc < 0 ? <ArrowDownward className="featuredIcon negative" /> : <ArrowUpward className="featuredIcon" />}

@@ -9,7 +9,6 @@ import { deleteProduct, getProducts } from "../../redux/apiCalls";
 export default function ProductList() {
     const dispatch = useDispatch();
     const products = useSelector((state) => state.user.product.products);
-    // console.log(products);
 
     useEffect(() => {
         getProducts(dispatch);
@@ -48,7 +47,7 @@ export default function ProductList() {
             renderCell: (params) => {
                 return (
                     <>
-                        <Link to={"/product/" + params.row.id}>
+                        <Link to={"/product/" + params.row._id}>
                             <button className="productListEdit">Edit</button>
                         </Link>
                         <DeleteOutline className="productListDelete" onClick={() => handleDelete(params.row._id)} />
