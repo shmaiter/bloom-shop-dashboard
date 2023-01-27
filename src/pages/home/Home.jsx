@@ -7,6 +7,8 @@ import WidgetLg from "../../components/widgetLg/WidgetLg";
 import { useMemo, useState } from "react";
 import { useEffect } from "react";
 import { userRequest } from "../../requestedMethods";
+import Topbar from "../../components/topbar/Topbar";
+import Sidebar from "../../components/sidebar/Sidebar";
 
 export default function Home() {
     const [userStats, setUserStats] = useState([]);

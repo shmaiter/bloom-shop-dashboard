@@ -4,6 +4,7 @@ import { getStorage, ref, getDownloadURL, uploadBytesResumable } from "firebase/
 import app from "../../firebase";
 import { addProduct } from "../../redux/apiCalls";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function NewProduct() {
     const [inputs, setInputs] = useState({});
@@ -12,6 +13,7 @@ export default function NewProduct() {
     const [sizes, setSizes] = useState([]);
     const [colors, setColors] = useState([]);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -65,6 +67,7 @@ export default function NewProduct() {
                     const product = { ...inputs, img: downloadURL, categories: cat, size: sizes, color: colors };
                     addProduct(dispatch, product);
                 });
+                navigate("/products");
             }
         );
     };

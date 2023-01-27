@@ -1,15 +1,24 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { login } from "../../redux/apiCalls";
 
 const Login = () => {
+    const { error } = useSelector((state) => state.user);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleClick = (e) => {
         e.preventDefault();
         login(dispatch, { username, password });
+
+        if (!error) {
+            setUsername("");
+            setPassword("");
+            navigate("/");
+        }
     };
 
     return (
